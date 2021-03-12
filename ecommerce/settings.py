@@ -14,8 +14,16 @@ from decouple import config
 import dj_database_url
 from pathlib import Path
 import os
+
+
 STRIPE_API_KEY_PUBLISHABLE = "pk_test_51IGCpIICUAobUZANaxVLc86ehVKVXZSgXi3xMa8tICpt5SWB30GKtzPsB2MVOZJRYAUOCwGDevjiacgGfWn2ma0m00nVeFNNHq"
 STRIPE_API_KEY_HIDDEN = "sk_test_51IGCpIICUAobUZANAzc6CbtCBO4HMPLwLpefDycfwGHnUhzxwSYCRJLY0OxwTKEt4EXUkBJ3dIZnQevrwZxrxrFa00uigzlKTW"
+
+RAZORPAY_API_KEY_PUBLISHABLE = "rzp_test_NuJbyZwZE0VrLW"
+RAZORPAY_API_KEY_HIDDEN = "96Ge4PNmLRgwfDL0yZOhxwoB"
+
+PAYPAL_API_KEY_PUBLISHABLE = "AZov2oiNqm5bMvBDR_RGkhf76g_1zhe8UgvdjvOsvctW3f5IaW5Z9B84vJnEUNqy42f5bjmydrqYs9a8"
+PAYPAL_API_KEY_HIDDEN = "EP4oa3BIh4UnWOstn4ob8qtTT02PlffBO1KWEuUWVH_3OGlBAvy0XjfYsI-zBExLXaVidR8kfGJU5gcx"
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +41,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'frontpage'
+LOGOUT_REDIRECT_URL = 'frontpage'
+
 # Cart
 
 SESSION_COOKIE_AGE = 86400
@@ -47,13 +62,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
 
     'apps.cart',
     'apps.coupon',
     'apps.core',
+    'apps.newsletter',
     'apps.order',
-    'apps.store'
+    'apps.store',
+    'apps.userprofile'
 
 
 
@@ -142,7 +160,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
